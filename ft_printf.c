@@ -6,11 +6,17 @@
 /*   By: niotzenb <niotzenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:41:16 by niotzenb          #+#    #+#             */
-/*   Updated: 2023/10/31 13:05:05 by niotzenb         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:24:58 by niotzenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_putchar_fd(char c, int fd, int i)
+{
+	write(fd, &c, 1);
+	return (i);
+}
 
 int	ft_found_c(char c, int i)
 {
@@ -29,6 +35,28 @@ int	ft_found_s(char *s, int i)
 	return (i);
 }
 
+int	ft_found_d(int d, int i)
+{
+	if (d == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		i = i + 11;
+	}
+	else if (d < 0)
+	{
+		i = ft_putchar_fd('-', 1, i);
+		i = ft_found_d(-d, i);
+	}
+	else if (d >= 0 && d < 10)
+		i = ft_putchar_fd(d + 48, 1, i);
+	else
+	{
+		i = ft_found_d(d / 10, i);
+		i = ft_putchar_fd((d % 10) + 48, 1, i);
+	}
+	return (i);
+}
+
 int	ft_after_percent(const char *format, va_list args, int j, int i)
 {
 	if (format[i] == 'c')
@@ -38,7 +66,7 @@ int	ft_after_percent(const char *format, va_list args, int j, int i)
 	if (format[i] == 'p')
 		write(1, "p", 1);
 	if (format[i] == 'd')
-		write(1, "d", 1);
+		j = ft_found_d(va_arg(args, int), i);
 	if (format[i] == 'i')
 		write(1, "i", 1);
 	if (format[i] == 'u')
@@ -78,7 +106,7 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("mon printf --> hello42, c: %c, s: %s\n", 'q', "toto");
+	ft_printf("mon printf --> hello42, c: %c, s: %s, d: %d\n", 'q', "toto", 42);
 	printf("le vrai printf --> hello42, c: %c, s: %s, d: %d\n", 'q', "toto", 42);
 	return (0);
 }
