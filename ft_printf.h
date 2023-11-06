@@ -6,7 +6,7 @@
 /*   By: niotzenb <niotzenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:37:46 by niotzenb          #+#    #+#             */
-/*   Updated: 2023/11/06 11:40:13 by niotzenb         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:04:03 by niotzenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	ft_found_xupp(size_t X, int i);
 int	ft_found_xlower(size_t x, int i);
 int	ft_found_d(int d, int i);
 int	ft_found_p(void *s, int i);
+int	ft_found_u(unsigned int u, int i);
 
 #endif

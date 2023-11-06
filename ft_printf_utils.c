@@ -6,7 +6,7 @@
 /*   By: niotzenb <niotzenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:31:19 by niotzenb          #+#    #+#             */
-/*   Updated: 2023/11/06 11:40:24 by niotzenb         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:04:33 by niotzenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,13 @@ int	ft_found_xupp(size_t X, int i)
 		i = ft_putchar_fd(h + '0', 1, i);
 	else
 		i = ft_putchar_fd(h + 'A' - 10, 1, i);
+	return (i);
+}
+
+int	ft_found_u(unsigned int u, int i)
+{
+	if (u >= 10)
+		i = ft_found_u(u / 10, i);
+	i = ft_putchar_fd(u % 10 + '0', 1, i);
 	return (i);
 }

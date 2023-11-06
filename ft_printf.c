@@ -6,7 +6,7 @@
 /*   By: niotzenb <niotzenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:41:16 by niotzenb          #+#    #+#             */
-/*   Updated: 2023/11/06 11:49:24 by niotzenb         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:12:51 by niotzenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_after_percent(const char *format, va_list args, int j, int i)
 	if (format[i] == 'i')
 		write(1, "i", 1);
 	if (format[i] == 'u')
-		write(1, "u", 1);
+		j = ft_found_u(va_arg(args, int), i);
 	if (format[i] == 'x')
 		j = ft_found_xlower(va_arg(args, size_t), i);
 	if (format[i] == 'X')
