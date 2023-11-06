@@ -1,4 +1,4 @@
-SRCS			=
+SRCS			= ft_printf.c ft_printf_utils.c
 
 OBJS			= $(SRCS:.c=.o)
 
@@ -8,7 +8,10 @@ CFLAGS			= -Wall -Wextra -Werror -I.
 
 NAME			= libftprintf.a
 
-all:			$(NAME) $(MAKE) -C Libftv2 -f Makefile
+$(NAME):		$(OBJS)
+				ar rcs $(NAME) $(OBJS)
+
+all:			$(NAME)
 
 clean:
 				$(RM) $(OBJS)
