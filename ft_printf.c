@@ -6,7 +6,7 @@
 /*   By: niotzenb <niotzenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:41:16 by niotzenb          #+#    #+#             */
-/*   Updated: 2023/11/06 12:12:51 by niotzenb         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:24:38 by niotzenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
+		if (!format)
+		{
+			write(1, "(null)", 6);
+			va_end(args);
+			return (j);
+		}
 		if (format[i] == '%')
 			j = ft_after_percent(format, args, j, ++i);
 		else
@@ -81,7 +87,7 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (j);
 }
 
 /*int	main(void)
